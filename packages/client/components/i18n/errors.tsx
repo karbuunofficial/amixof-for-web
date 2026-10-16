@@ -164,7 +164,7 @@ export function useError() {
           return err.type + " " + err.location;
 
         default:
-          return t`Uncaught Stoat error: ${err.type}`;
+          return t`Uncaught AMIXOF error: ${err.type}`;
       }
     }
 
@@ -218,14 +218,8 @@ export function TranslatedError(props: TranslatedErrorProps) {
         <Switch fallback={err(props.error)}>
           <Match when={(errorString() as API.Error).type === "BlockedByShield"}>
             <Trans>
-              This sign up is marked as spam. Please see{" "}
-              <a
-                href="https://support.stoat.chat/kb/safety/blocked-for-spam"
-                target="_blank"
-                rel="noreferrer"
-              >
-                this support article.
-              </a>
+              This sign up is marked as spam. Please{" "}
+              <a href="mailto:support@amixof.com">contact support</a>.
             </Trans>
           </Match>
         </Switch>

@@ -19,7 +19,6 @@ import MdVerifiedFill from "@material-design-icons/svg/filled/verified.svg?compo
 import MdCalendarMonth from "@material-design-icons/svg/outlined/calendar_month.svg?component-solid";
 import MdLanguage from "@material-design-icons/svg/outlined/language.svg?component-solid";
 import MdSchedule from "@material-design-icons/svg/outlined/schedule.svg?component-solid";
-import MdTranslate from "@material-design-icons/svg/outlined/translate.svg?component-solid";
 
 /**
  * Language
@@ -34,9 +33,6 @@ export function LanguageSettings() {
       <CategoryButton.Group>
         <PickDateFormat />
         <PickTimeFormat />
-      </CategoryButton.Group>
-      <CategoryButton.Group>
-        <ContributeLanguageLink />
       </CategoryButton.Group>
     </Column>
   );
@@ -196,23 +192,3 @@ function PickTimeFormat() {
 //     </Switch>
 //   );
 // }
-
-/**
- * Language contribution link
- */
-function ContributeLanguageLink() {
-  return (
-    <a href="https://translate.stoat.chat/projects/revolt/" target="_blank">
-      <CategoryButton
-        action="external"
-        icon={<MdTranslate {...iconSize(22)} />}
-        ignoreClick
-        description={
-          <Trans>Help contribute to an existing or new language</Trans>
-        }
-      >
-        <Trans>Contribute a language</Trans>
-      </CategoryButton>
-    </a>
-  );
-}

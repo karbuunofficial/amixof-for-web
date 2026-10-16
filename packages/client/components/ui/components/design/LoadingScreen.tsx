@@ -152,8 +152,18 @@ export function LoadingScreen(props: { isStoat?: boolean }) {
               symbol="wifi_off"
               label={t`This is taking longer than usual.`}
               title={t`You may be experiencing connection issues.`}
-              url={TROUBLESHOOTING_URL}
-              action={<Trans>Troubleshooting</Trans>}
+              url={
+                props.isStoat || instance?.isStoat
+                  ? TROUBLESHOOTING_URL
+                  : "mailto:support@amixof.com"
+              }
+              action={
+                props.isStoat || instance?.isStoat ? (
+                  <Trans>Troubleshooting</Trans>
+                ) : (
+                  <Trans>Contact support</Trans>
+                )
+              }
             />
           )
         }

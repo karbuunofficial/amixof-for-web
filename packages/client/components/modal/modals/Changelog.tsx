@@ -20,33 +20,8 @@ export interface ChangelogResponse {
   updated_at?: string;
 }
 
-const CHANGELOG_ENDPOINT = "https://changelog.stoat.chat/v1/changelogs/latest";
-
 export async function fetchLatestChangelog(): Promise<ChangelogResponse | null> {
-  try {
-    const response = await fetch(CHANGELOG_ENDPOINT, {
-      headers: { Accept: "application/json" },
-    });
-
-    if (!response.ok) {
-      return null;
-    }
-
-    const data = (await response.json()) as Partial<ChangelogResponse>;
-
-    if (
-      typeof data?.id !== "string" ||
-      typeof data?.title !== "string" ||
-      typeof data?.markdown_content !== "string" ||
-      typeof data?.published_at !== "string"
-    ) {
-      return null;
-    }
-
-    return data as ChangelogResponse;
-  } catch {
-    return null;
-  }
+  return null;
 }
 
 export function ChangelogModal(

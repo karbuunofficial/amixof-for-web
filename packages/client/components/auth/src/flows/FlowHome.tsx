@@ -47,19 +47,13 @@ export default function FlowHome() {
                 }}
               >
                 <span>
-                  <Trans>
-                    Find your com
-                    <wbr />
-                    munity,
-                    <br />
-                    connect with the world.
-                  </Trans>
+                  <Trans>Find Your People. Join the Conversation.</Trans>
                 </span>
               </b>
               <span style={{ "text-align": "center", opacity: "0.5" }}>
                 <Trans>
-                  Stoat is one of the best ways to stay connected with your
-                  friends and community, anywhere, anytime.
+                  One place to connect, discover communities, and be part of
+                  conversations that matter to you.
                 </Trans>
               </span>
             </Column>
@@ -75,7 +69,7 @@ export default function FlowHome() {
               <a href="/login/create">
                 <Column>
                   <Button variant="tonal">
-                    <Trans>Sign Up</Trans>
+                    <Trans>Create Your Account</Trans>
                   </Button>
                 </Column>
               </a>

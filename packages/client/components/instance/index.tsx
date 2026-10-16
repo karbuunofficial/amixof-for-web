@@ -39,7 +39,7 @@ export function InstanceContext(props: { children?: JSXElement }) {
     console.error(e);
     if ((e as Error).message === "Failed to fetch") {
       const hStr = `'${host || DefaultHost}'`;
-      e = t`Couldn't fetch Stoat configuration from ${hStr}.`;
+      e = t`Couldn't fetch AMIXOF configuration from ${hStr}.`;
     }
     snackbar.show({
       message: t`Oops, something went wrong! ${e}`,

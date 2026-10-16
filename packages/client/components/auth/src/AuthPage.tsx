@@ -12,7 +12,6 @@ import MdDarkMode from "@material-design-icons/svg/filled/dark_mode.svg?componen
 
 import background from "./background.jpg";
 import { FlowBase } from "./flows/Flow";
-import bluesky from "./flows/bluesky.svg";
 
 /**
  * Authentication page layout
@@ -150,29 +149,26 @@ export function AuthPage(props: { children: JSX.Element }) {
         <Nav>
           <NavItems variant="stack">
             <NavItems>
-              <LinkWithIcon href="https://github.com/stoatchat" target="_blank">
-                <BiLogosGithub size={24} />
-              </LinkWithIcon>
               <LinkWithIcon
-                href="https://bsky.app/profile/stoat.chat"
+                href="https://github.com/karbuunofficial/amixof-for-web"
                 target="_blank"
               >
-                <img
-                  src={bluesky}
-                  style={{ height: "22px", "padding-top": "3px" }}
-                />
+                <BiLogosGithub size={24} />
               </LinkWithIcon>
             </NavItems>
             <Bullet />
             <NavItems>
-              <a href="https://stoat.chat/about" target="_blank">
+              <a href="/about">
                 <Trans>About</Trans>
               </a>
-              <a href="https://stoat.chat/terms" target="_blank">
+              <a href="/terms">
                 <Trans>Terms of Service</Trans>
               </a>
-              <a href="https://stoat.chat/privacy" target="_blank">
+              <a href="/privacy">
                 <Trans>Privacy Policy</Trans>
+              </a>
+              <a href="https://github.com/karbuunofficial/amixof-for-web">
+                <Trans>Source</Trans>
               </a>
             </NavItems>
           </NavItems>

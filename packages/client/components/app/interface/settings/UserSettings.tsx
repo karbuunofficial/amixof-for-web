@@ -8,13 +8,10 @@ import { useClient, useClientLifecycle } from "@revolt/client";
 import { useInstance } from "@revolt/instance";
 import { useUser } from "@revolt/markdown/users";
 import { useModals } from "@revolt/modal";
-import { fetchLatestChangelog } from "@revolt/modal/modals/Changelog";
 import { ColouredText, Column, Text, iconSize } from "@revolt/ui";
 import { Symbol } from "@revolt/ui/components/utils/Symbol";
 
 import MdAccountCircle from "@material-design-icons/svg/outlined/account_circle.svg?component-solid";
-import MdCampaign from "@material-design-icons/svg/outlined/campaign.svg?component-solid";
-import MdCoffee from "@material-design-icons/svg/outlined/coffee.svg?component-solid";
 import MdLanguage from "@material-design-icons/svg/outlined/language.svg?component-solid";
 import MdLogout from "@material-design-icons/svg/outlined/logout.svg?component-solid";
 import MdMemory from "@material-design-icons/svg/outlined/memory.svg?component-solid";
@@ -112,7 +109,7 @@ const Config: SettingsConfiguration<{ server: Server }> = {
    * @returns List
    */
   list(_, onClose) {
-    const { pop, openModal } = useModals();
+    const { pop } = useModals();
     const { logout } = useClientLifecycle();
     const { limits, config } = useInstance();
 
@@ -135,7 +132,7 @@ const Config: SettingsConfiguration<{ server: Server }> = {
           </Text>
           <Show when={window.native}>
             <Text class="label">
-              Stoat for Desktop {window.native.versions.desktop()}
+              AMIXOF for Desktop {window.native.versions.desktop()}
             </Text>
             <Text class="label">
               <span
@@ -223,7 +220,7 @@ const Config: SettingsConfiguration<{ server: Server }> = {
           ],
         },
         {
-          title: "Stoat",
+          title: "AMIXOF",
           entries: [
             {
               id: "bots",
@@ -319,16 +316,7 @@ const Config: SettingsConfiguration<{ server: Server }> = {
         {
           entries: [
             {
-              onClick: async () => {
-                const changelog = await fetchLatestChangelog();
-                if (!changelog) return;
-                openModal({ type: "changelog", changelog });
-              },
-              icon: <MdCampaign {...iconSize(20)} />,
-              title: <Trans>What's New</Trans>,
-            },
-            {
-              href: "https://github.com/stoatchat",
+              href: "https://github.com/karbuunofficial/amixof-for-web",
               icon: <MdMemory {...iconSize(20)} />,
               title: <Trans>Source Code</Trans>,
             },
@@ -336,11 +324,6 @@ const Config: SettingsConfiguration<{ server: Server }> = {
               id: "advanced",
               icon: <MdScience {...iconSize(20)} />,
               title: <Trans>Advanced</Trans>,
-            },
-            {
-              href: "https://ko-fi.com/stoatchat",
-              icon: <MdCoffee {...iconSize(20)} />,
-              title: <Trans>Donate</Trans>,
             },
             {
               id: "logout",

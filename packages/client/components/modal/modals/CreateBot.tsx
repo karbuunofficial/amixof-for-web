@@ -58,8 +58,8 @@ export function CreateBotModal(
           <Text>
             <Trans>
               By creating this bot, you agree to the{" "}
-              <a href="https://stoat.chat/aup" target="_blank" rel="noreferrer">
-                <Trans>Acceptable Use Policy</Trans>
+              <a href="/terms">
+                <Trans>Terms of Service</Trans>
               </a>
               .
             </Trans>

@@ -35,11 +35,6 @@ import { CompositionMediaPickerContext } from "./CompositionMediaPicker";
 const GIFBOX_EXPLAINER_DISMISS_KEY = "gifbox-explainer-dismissed";
 
 /**
- * Link to more information about Gifbox
- */
-const GIFBOX_LEARN_MORE_URL = "https://stoat.gg/meet-gifbox";
-
-/**
  * Link to upload GIFs to Gifbox
  */
 const GIFBOX_UPLOAD_URL = "https://gifbox.me/upload";
@@ -137,24 +132,9 @@ function GifboxExplainer() {
           <Trans>GIFs are now powered by Gifbox</Trans>
         </Text>
         <ExplainerBody>
-          <Trans>
-            Gifbox is our own GIF service, so you can keep sharing GIFs right
-            here on Stoat.
-          </Trans>
+          <Trans>GIFs in the picker are provided by Gifbox.</Trans>
         </ExplainerBody>
         <ExplainerActions>
-          <Button
-            variant="text"
-            onPress={() =>
-              window.open(
-                GIFBOX_LEARN_MORE_URL,
-                "_blank",
-                "noopener,noreferrer",
-              )
-            }
-          >
-            <Trans>Learn more</Trans>
-          </Button>
           <Button
             variant="filled"
             onPress={() =>

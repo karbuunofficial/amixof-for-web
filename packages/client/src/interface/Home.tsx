@@ -22,7 +22,6 @@ import MdAddCircle from "@material-design-icons/svg/filled/add_circle.svg?compon
 import MdExplore from "@material-design-icons/svg/filled/explore.svg?component-solid";
 import MdGroups3 from "@material-design-icons/svg/filled/groups_3.svg?component-solid";
 import MdHome from "@material-design-icons/svg/filled/home.svg?component-solid";
-import MdPayments from "@material-design-icons/svg/filled/payments.svg?component-solid";
 import MdRateReview from "@material-design-icons/svg/filled/rate_review.svg?component-solid";
 import MdSettings from "@material-design-icons/svg/filled/settings.svg?component-solid";
 
@@ -151,7 +150,7 @@ export function HomePage() {
                   }
                   icon={<MdGroups3 />}
                 >
-                  <Trans>Go to the Stoat Lounge</Trans>
+                  <Trans>Go to the AMIXOF community</Trans>
                 </CategoryButton>
               </Match>
               <Match when={showLoungeButton && !isInLounge}>
@@ -172,20 +171,10 @@ export function HomePage() {
                   }
                   icon={<MdGroups3 />}
                 >
-                  <Trans>Join the Stoat Lounge</Trans>
+                  <Trans>Join the AMIXOF community</Trans>
                 </CategoryButton>
               </Match>
             </Switch>
-            <CategoryButton
-              variant="tertiary"
-              onClick={() => window.open("https://ko-fi.com/stoatchat")}
-              description={
-                <Trans>Support the project by donating - thank you!</Trans>
-              }
-              icon={<MdPayments />}
-            >
-              <Trans>Donate to Stoat</Trans>
-            </CategoryButton>
           </SeparatedColumn>
           <SeparatedColumn>
             <Show when={instance.isStoat}>
@@ -198,7 +187,7 @@ export function HomePage() {
                 }
                 icon={<MdExplore />}
               >
-                <Trans>Discover Stoat</Trans>
+                <Trans>Discover communities</Trans>
               </CategoryButton>
             </Show>
             <CategoryButton
@@ -216,7 +205,7 @@ export function HomePage() {
               }
               icon={<MdRateReview {...iconSize(22)} />}
             >
-              <Trans>Give feedback on Stoat</Trans>
+              <Trans>Give feedback</Trans>
             </CategoryButton>
             <CategoryButton
               onClick={() => openModal({ type: "settings", config: "user" })}

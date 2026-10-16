@@ -45,7 +45,7 @@ export function Feedback() {
           </CategoryButton>
         </Link> */}
         <Link
-          href="https://github.com/orgs/stoatchat/discussions/categories/feature-suggestions"
+          href="mailto:support@amixof.com"
           target="_blank"
         >
           <CategoryButton
@@ -53,27 +53,27 @@ export function Feedback() {
             icon={<MdStar {...iconSize(22)} />}
             ignoreClick
             description={
-              <Trans>Suggest new Stoat features on GitHub discussions.</Trans>
+              <Trans>Email a suggestion to support@amixof.com.</Trans>
             }
           >
             <Trans>Submit feature suggestion</Trans>
           </CategoryButton>
         </Link>
         <Link
-          href="https://github.com/orgs/stoatchat/discussions/categories/feedback"
+          href="mailto:support@amixof.com"
           target="_blank"
         >
           <CategoryButton
             action="external"
             icon={<MdFormatListNumbered {...iconSize(22)} />}
             ignoreClick
-            description={<Trans>Submit feedback</Trans>}
+            description={<Trans>Email support@amixof.com</Trans>}
           >
             <Trans>Feedback</Trans>
           </CategoryButton>
         </Link>
         <Link
-          href="https://github.com/stoatchat/for-web/issues?q=is%3Aissue%20state%3Aopen%20type%3ABug"
+          href="https://github.com/karbuunofficial/amixof-for-web/issues"
           target="_blank"
         >
           <CategoryButton
@@ -100,7 +100,7 @@ export function Feedback() {
               }
               icon={<MdGroups3 />}
             >
-              <Trans>Go to the Stoat Lounge</Trans>
+              <Trans>Go to the AMIXOF community</Trans>
             </CategoryButton>
           </Match>
           <Match when={showLoungeButton && !isInLounge}>
@@ -119,7 +119,7 @@ export function Feedback() {
               }
               icon={<MdGroups3 />}
             >
-              <Trans>Join the Stoat Lounge</Trans>
+              <Trans>Join the AMIXOF community</Trans>
             </CategoryButton>
           </Match>
         </Switch>

@@ -46,9 +46,10 @@ export default defineConfig({
         type: "module",
       },
       manifest: {
-        name: "Stoat",
-        short_name: "Stoat",
-        description: "User-first open source chat platform.",
+        name: "AMIXOF",
+        short_name: "AMIXOF",
+        description:
+          "AMIXOF is a community and real-time chat platform for finding your people, exploring shared interests, and staying connected through conversations.",
         categories: ["communication", "chat", "messaging"],
         start_url: base,
         scope: pwaScope,

@@ -1,4 +1,16 @@
 <div align="center">
+<h1>AMIXOF for Web</h1>
+<p>
+  Modified version of <a href="https://github.com/stoatchat/for-web">Stoat for Web</a>
+  commit <a href="https://github.com/stoatchat/for-web/tree/4017c18bf8063bf0fd1a5d01d415871613f110f9">4017c18bf8063bf0fd1a5d01d415871613f110f9</a>,
+  changed on 16 October 2026 for <a href="https://www.amixof.com">AMIXOF</a>.
+  This modified work is released under the GNU Affero General Public License v3.0.
+  There is no warranty. See <a href="./LICENSE">LICENSE</a> and <a href="./MODIFICATIONS.md">MODIFICATIONS.md</a>.
+  Upstream copyright notices, including Copyright (C) 2026 Revolt Platforms Ltd, are kept.
+</p>
+</div>
+
+<div align="center">
 <h1>
   Stoat Frontend
   
