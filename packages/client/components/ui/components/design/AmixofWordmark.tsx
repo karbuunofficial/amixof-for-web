@@ -8,7 +8,7 @@ export function AmixofWordmark(props: JSX.IntrinsicElements["svg"]) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 320 64"
+      viewBox="0 0 212 64"
       fill="currentColor"
       role="img"
       aria-label="AMIXOF"
@@ -16,9 +16,9 @@ export function AmixofWordmark(props: JSX.IntrinsicElements["svg"]) {
     >
       <title>AMIXOF</title>
       <text
-        x="0"
+        x="106"
         y="50"
-        fill="currentColor"
+        text-anchor="middle"
         font-family="Arial, Helvetica, sans-serif"
         font-size="52"
         font-weight="700"

@@ -26,7 +26,6 @@ import MdHome from "@material-design-icons/svg/filled/home.svg?component-solid";
 import MdRateReview from "@material-design-icons/svg/filled/rate_review.svg?component-solid";
 import MdSettings from "@material-design-icons/svg/filled/settings.svg?component-solid";
 
-
 import { HeaderIcon } from "./common/CommonHeader";
 
 /**
