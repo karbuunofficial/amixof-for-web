@@ -44,10 +44,7 @@ export function Feedback() {
             <Trans>Roadmap</Trans>
           </CategoryButton>
         </Link> */}
-        <Link
-          href="mailto:support@amixof.com"
-          target="_blank"
-        >
+        <Link href="mailto:support@amixof.com" target="_blank">
           <CategoryButton
             action="external"
             icon={<MdStar {...iconSize(22)} />}
@@ -59,10 +56,7 @@ export function Feedback() {
             <Trans>Submit feature suggestion</Trans>
           </CategoryButton>
         </Link>
-        <Link
-          href="mailto:support@amixof.com"
-          target="_blank"
-        >
+        <Link href="mailto:support@amixof.com" target="_blank">
           <CategoryButton
             action="external"
             icon={<MdFormatListNumbered {...iconSize(22)} />}
