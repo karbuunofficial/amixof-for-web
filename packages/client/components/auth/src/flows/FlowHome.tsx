@@ -6,10 +6,9 @@ import { css } from "styled-system/css";
 import { useClientLifecycle } from "@revolt/client";
 import { TransitionType } from "@revolt/client/Controller";
 import { Navigate } from "@revolt/routing";
-import { Button, Column } from "@revolt/ui";
+import { AmixofWordmark, Button, Column } from "@revolt/ui";
 
 import { useState } from "@revolt/state";
-import Wordmark from "../../../../public/assets/web/wordmark.svg?component-solid";
 
 /**
  * Flow for logging into an account
@@ -27,7 +26,7 @@ export default function FlowHome() {
           </Show>
 
           <Column gap="xl">
-            <Wordmark
+            <AmixofWordmark
               class={css({
                 width: "60%",
                 margin: "auto",

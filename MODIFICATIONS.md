@@ -20,7 +20,7 @@ Copyright (C) 2026  Revolt Platforms Ltd
 
 User-facing product name, wordmark, manifest text, authentication copy, settings labels, support and legal links, and the places that previously sent people to Stoat donation, feedback, changelog, developer, or social pages. Technical protocol names are unchanged, including `/.well-known/stoat`, `Revolt.toml`, and the `isStoat` check that detects the official stoat.chat host.
 
-The private Stoat brand-asset repository is not included. The build uses the fallback assets in this repository, with the wordmark replaced by the text AMIXOF.
+The private Stoat brand-asset repository is not included. The build uses the fallback assets in this repository, with the wordmark replaced by the text AMIXOF. The logo is rendered with the `AmixofWordmark` Solid component (not `wordmark.svg?component-solid`, which drops SVG `<text>` and showed a blank mark).
 
 The Stoat server images are not part of this repository and were not modified for this deployment.
 

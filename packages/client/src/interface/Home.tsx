@@ -10,6 +10,7 @@ import { useInstance } from "@revolt/instance";
 import { useModals } from "@revolt/modal";
 import { useNavigate } from "@revolt/routing";
 import {
+  AmixofWordmark,
   Button,
   CategoryButton,
   Column,
@@ -25,7 +26,6 @@ import MdHome from "@material-design-icons/svg/filled/home.svg?component-solid";
 import MdRateReview from "@material-design-icons/svg/filled/rate_review.svg?component-solid";
 import MdSettings from "@material-design-icons/svg/filled/settings.svg?component-solid";
 
-import Wordmark from "../../public/assets/web/wordmark.svg?component-solid";
 
 import { HeaderIcon } from "./common/CommonHeader";
 
@@ -112,7 +112,7 @@ export function HomePage() {
       </Header>
       <div use:scrollable={{ class: content() }}>
         <Column>
-          <Wordmark
+          <AmixofWordmark
             class={css({
               width: "160px",
               fill: "var(--md-sys-color-on-surface)",

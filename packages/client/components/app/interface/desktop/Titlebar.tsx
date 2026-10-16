@@ -6,7 +6,13 @@ import { styled } from "styled-system/jsx";
 
 import { useClientLifecycle } from "@revolt/client";
 import { State, TransitionType } from "@revolt/client/Controller";
-import { Button, Ripple, symbolSize, typography } from "@revolt/ui";
+import {
+  AmixofWordmark,
+  Button,
+  Ripple,
+  symbolSize,
+  typography,
+} from "@revolt/ui";
 
 import MdBuild from "@material-symbols/svg-400/outlined/build.svg?component-solid";
 import MdClose from "@material-symbols/svg-400/outlined/close.svg?component-solid";
@@ -14,7 +20,6 @@ import MdCollapseContent from "@material-symbols/svg-400/outlined/collapse_conte
 import MdExpandContent from "@material-symbols/svg-400/outlined/expand_content.svg?component-solid";
 import MdMinimize from "@material-symbols/svg-400/outlined/minimize.svg?component-solid";
 
-import Wordmark from "../../../../public/assets/web/wordmark.svg?component-solid";
 import { pendingUpdate } from "../../../../src/serviceWorkerInterface";
 
 const isMacOS = navigator.platform.startsWith("Mac");
@@ -61,7 +66,7 @@ export function Titlebar() {
                 "-webkit-app-region": "drag",
               }}
             >
-              <Wordmark
+              <AmixofWordmark
                 class={css({
                   height: "18px",
                   marginBlockStart: "1px",
