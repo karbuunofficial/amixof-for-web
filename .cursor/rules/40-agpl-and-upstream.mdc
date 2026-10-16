@@ -1,0 +1,36 @@
+---
+description: AGPL-3.0 obligations for the AMIXOF fork and how to treat upstream Stoat code and submodules.
+alwaysApply: true
+---
+
+# License and upstream
+
+This is a modified version of Stoat for Web, released under **AGPL-3.0**. Users interact with it
+over a network, so the exact running source must be public.
+
+- Production must only run commits that are pushed to `karbuunofficial/amixof-for-web`.
+  `deploy.sh` enforces this; never work around it.
+- Keep `LICENSE`, upstream copyright lines ("Copyright (C) 2026 Revolt Platforms Ltd"), and
+  existing file headers.
+- When a change is user-visible (copy, branding, links, features removed or added), add a line to
+  the "What changed" section of `MODIFICATIONS.md` in the same commit. Keep it factual.
+- Do not add closed-source or license-incompatible dependencies. MIT, BSD, Apache-2.0, ISC,
+  MPL-2.0, LGPL, GPL-3.0, AGPL-3.0 are fine. Anything else: ask the user.
+
+## Submodules
+
+| Path | Source | Notes |
+|------|--------|-------|
+| `packages/stoat.js` | public | Required to build. Edit only if the task needs SDK changes; build with `pnpm --filter stoat.js build`. |
+| `packages/solid-livekit-components` | public | Required to build. |
+| `packages/client/assets` | **private Stoat brand repo** | `update = none`. Never initialise it. The build uses `scripts/assets_fallback/`. |
+
+Initialise the two public ones with
+`git submodule update --init packages/stoat.js packages/solid-livekit-components`.
+A missing submodule is the usual cause of "cannot find module stoat.js" build failures.
+
+## Upstream workflows
+
+`.github/workflows/` comes from upstream. Several jobs push to Stoat's registries (Harbor
+secrets) or send Stoat webhooks; they fail or no-op on this fork. Do not rely on them as
+evidence, and do not add secrets to make them pass. Local verification is the source of truth.

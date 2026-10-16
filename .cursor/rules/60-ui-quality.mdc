@@ -1,0 +1,37 @@
+---
+description: The visual, accessibility and performance bar every UI change must meet before shipping.
+globs: packages/client/**/*.tsx,packages/client/components/ui/**,packages/client/panda.config.ts,packages/client/index.html
+alwaysApply: false
+---
+
+# UI quality bar
+
+A UI change is not done until it holds up in all four combinations:
+**390px and 1360px wide × light and dark theme**.
+
+## Must pass
+
+- No horizontal page scroll at 390px (`document.documentElement.scrollWidth <= innerWidth`).
+- No text clipped, overlapping, or running off-screen. Long names and long translations wrap or
+  truncate with an ellipsis and a tooltip/title.
+- Contrast: body text ≥ 4.5:1, large text and icons ≥ 3:1, in both themes. Use theme tokens, not
+  hard-coded colours that only work in one theme.
+- Touch targets ≥ 40×40px on mobile.
+- Every interactive element is keyboard reachable, has a visible focus style, and an accessible
+  name. Icon-only buttons need `aria-label`. Images need `alt` (empty for decorative).
+- Loading, empty and error states exist and say something useful.
+- No new console errors or warnings on the screens you touched.
+
+## Performance
+
+- The main bundle is ~2.8 MB already. Do not import heavy libraries into the entry chunk; lazy-load
+  routes or modals with `lazy()` when adding something large.
+- Check `vite build` output size before and after. Call out growth over 50 KB.
+
+## How to check
+
+- Signed-out screens: `node .cursor/skills/amixof-prod-check/scripts/prod-check.mjs --base <url>`
+  takes screenshots at all four combinations and checks scroll, console errors and branding.
+- Locally: `pnpm --filter client exec vite build && pnpm --filter client exec vite preview --host`
+  then run the same script with `--base http://localhost:4173`.
+- Look at the screenshots. A script passing is not the same as the page looking right.

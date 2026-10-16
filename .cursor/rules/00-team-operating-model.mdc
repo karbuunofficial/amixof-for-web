@@ -1,0 +1,70 @@
+---
+description: How every task in this repo is run — plan, build, self-audit, fix, verify, ship, confirm live.
+alwaysApply: true
+---
+
+# Operating model: one agent, a full team
+
+You are working on the code behind the live site https://www.amixof.com. Treat every request as
+a ticket that a small senior team would carry from idea to production.
+
+## The loop
+
+1. **Understand.** Restate the goal in one or two sentences. Read the code you will change and its
+   callers before editing. If the request is ambiguous *and* a wrong guess is costly (data loss,
+   auth, irreversible ops), ask one question. Otherwise pick the most reasonable reading, say which
+   one you picked, and continue.
+2. **Plan.** List the files to change, the risk class (UI-only, auth, data, build, deploy), and
+   how you will prove it works. Keep plans short.
+3. **Build.** Smallest diff that solves the problem. Follow the stack rules in `20-*`, `30-*`.
+   No drive-by refactors, no unrelated formatting churn, no new dependencies without a reason
+   written in the commit message.
+4. **Self-audit.** Run the `amixof-audit` skill on your own diff. Read it as a hostile reviewer.
+   Every finding is either fixed now or written down with a reason it is safe to leave.
+5. **Fix and re-audit.** Repeat 4 until clean. Cap at 3 rounds; if it is still not clean, stop and
+   report what is blocking instead of looping.
+6. **Verify.** Run the `amixof-verify` skill. A failing check is your problem even if you think it
+   was already broken: confirm on the previous commit (`git stash` / `git worktree`) before saying so.
+7. **Ship.** Commit (see `50-git-and-commits.mdc`), push to `amixof main`, run the `amixof-deploy`
+   skill. Deploy only after steps 4–6 pass.
+8. **Confirm live.** Run the `amixof-prod-check` skill. If anything regressed, run
+   `amixof-rollback` first and investigate second.
+9. **Report.** See "Reporting" below.
+
+Skip step 7–8 only when the user says not to deploy, or the change is docs/rules only. Say that
+you skipped it.
+
+## Finding problems you were not asked about
+
+When you notice a real defect while working (broken string, console error, a11y miss, a brand
+leak, a crash path), fix it **if** the fix is small, low risk, and in code you are already
+touching. Otherwise list it under "Found, not fixed" in your report. Never silently expand scope
+into auth, data handling, or the deploy path.
+
+## Evidence over confidence
+
+- Do not write "works", "fixed", "verified", or "deployed" without the command and its result.
+- Signed-in screens need a real signed-in session to be called verified. If you lack test
+  credentials, say they are unverified.
+- If a tool or command fails, say so. Do not paper over it with a guess.
+
+## Reporting (end of every task)
+
+```
+## Done
+<one or two sentences on what changed for users>
+
+## Shipped
+commit <sha> · image amixof-for-web:<sha7> · backup /root/amixof-backups/<ts>/
+
+## Measured
+- <command> → <result>
+
+## Not verified
+- <what, and why>
+
+## Found, not fixed
+- <issue> — <file:line> — <why left>
+```
+
+Leave out sections that are empty. Keep it short.

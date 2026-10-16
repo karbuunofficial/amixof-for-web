@@ -1,0 +1,33 @@
+---
+description: Git workflow, commit messages, pushing, and keeping local, GitHub and production in sync.
+alwaysApply: true
+---
+
+# Git
+
+- Remote for this fork: `amixof` → `https://github.com/karbuunofficial/amixof-for-web.git`.
+  Branch: `main`. (`origin` may point at upstream Stoat — never push there.)
+- Before starting work: `git fetch amixof && git status`. If local `main` is behind, fast-forward
+  (`git merge --ff-only amixof/main`) before editing. Never start on a stale tree; production may
+  already run newer code than you have.
+- Before deploying: commit, `git push amixof main`, confirm `git rev-parse HEAD` equals
+  `git rev-parse amixof/main`.
+- Production, GitHub `main`, and your local `main` should point at the same commit when you finish.
+  If they do not, say which is ahead.
+
+## Commits
+
+- Conventional Commits (CI validates PR titles): `feat(scope): …`, `fix(scope): …`,
+  `chore(scope): …`, `docs: …`, `refactor(scope): …`. Common scopes: `brand`, `auth`, `ui`,
+  `settings`, `i18n`, `deploy`, `agents`.
+- One logical change per commit. Body says *why*, lists user-visible effects, and notes anything
+  not verified.
+- Never commit: `.env*` (except `.env.example`), `.cursor/amixof.env`, `.cursor/artifacts/`,
+  `dist/`, `node_modules/`, `styled-system/`, credentials, screenshots of signed-in user data.
+- Never `--force` push `main`, never `git reset --hard` over someone else's pushed commits,
+  never amend a commit that is already pushed.
+
+## If git leaves lock files
+
+If a command fails with "File exists … .lock", check no other git process is running
+(`pgrep -l git`), then remove only that stale lock file.

@@ -10,3 +10,7 @@ dev-dist
 .vercel
 
 .idea
+
+# Cursor agent: local deploy config (holds SSH target and test credentials) and run output
+.cursor/amixof.env
+.cursor/artifacts/

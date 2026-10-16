@@ -1,0 +1,42 @@
+---
+description: Lingui strings, translation catalogs, and AMIXOF branding — what users may and may not see.
+globs: packages/client/**/*.tsx,packages/client/**/*.ts,packages/client/components/i18n/**,packages/client/index.html,packages/client/scripts/assets_fallback/**,packages/client/public/**
+alwaysApply: false
+---
+
+# Strings and branding
+
+## Lingui
+
+- Every user-visible string goes through Lingui: `<Trans>…</Trans>` in JSX, `` t`…` `` from
+  `useLingui()` / `@lingui/core/macro` in code. No bare English in JSX.
+- Do not concatenate translated fragments. Use placeholders: `<Trans>Hello {name}</Trans>`.
+- After adding or changing strings: `pnpm --filter client exec lingui extract` then
+  `lingui compile --typescript`, and commit the updated `catalogs/en/messages.po`.
+- Other languages' catalogs are upstream translations. Leave them alone unless the task is
+  about them. A new message falls back to English there; that is fine.
+- `lingui extract` leaves obsolete entries (`#~`). They are not shown to users; do not hand-edit
+  catalogs to remove them.
+
+## Branding: what the user sees
+
+- The product is **AMIXOF**. User-visible text, titles, `alt`, `aria-label`, `<title>`, manifest,
+  emails links, and the wordmark must not say "Stoat" or "Revolt".
+- The wordmark is `AmixofWordmark` from `@revolt/ui`. Do not reintroduce
+  `wordmark.svg?component-solid`.
+- Links that used to go to Stoat donate, feedback, changelog, developer, social, Lounge, or
+  status pages must go to AMIXOF equivalents or be removed.
+- `/source` and the in-app Source link must keep pointing at the public GitHub repo (AGPL §13).
+
+## Branding: what stays as is
+
+- Code and protocol names: `stoat.js`, `isStoat`, `STOAT_HOST`, `StoatOrigin`,
+  `/.well-known/stoat`, `Revolt.toml`, `@revolt/*` aliases, CSS variable names, package names.
+- Upstream copyright notices and the `LICENSE`.
+- Code inside `instance.isStoat` branches (never rendered here) and `AndroidNag` (only runs on
+  `stoat.chat` / `localhost`).
+
+## Check
+
+`node .cursor/skills/amixof-audit/scripts/brand-scan.mjs` lists user-facing Stoat/Revolt strings
+that are still reachable from source. It must report zero new findings before you ship.

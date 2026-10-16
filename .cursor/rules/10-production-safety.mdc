@@ -1,0 +1,60 @@
+---
+description: Production server facts and the hard limits on what an agent may do to it.
+alwaysApply: true
+---
+
+# Production safety
+
+This repo deploys straight to production. There is no staging. These limits are not optional.
+
+## What production looks like
+
+| Thing | Value |
+|-------|-------|
+| Public site | `https://www.amixof.com` (client at `/`, `/login`; API at `/api/`) |
+| Compose file | `/opt/stoat/compose.yml` (project dir `/opt/stoat`) |
+| Service you may touch | `web` (container `stoat-web-1`) — **only this one** |
+| Image naming | `amixof-for-web:<7-char commit sha>`, built on the server |
+| Build dirs | `/root/amixof-builds/amixof-for-web-<sha>` |
+| Backups | `/root/amixof-backups/<UTC yyyymmdd-HHMMSS>/compose.yml` + `previous-image` |
+| SSH target | `AMIXOF_SSH` in `.cursor/amixof.env` (never commit that file) |
+| Source repo | `https://github.com/karbuunofficial/amixof-for-web` (`amixof` remote, `main`) |
+
+The `web` container serves static files on port 5000 and replaces `__VITE_*__` placeholders at
+startup (`docker/inject.js`). Runtime URLs come from the compose environment, not the build.
+
+## Always
+
+- Deploy only with `.cursor/skills/amixof-deploy/scripts/deploy.sh`. It refuses dirty or unpushed
+  trees, takes a lock so two deploys cannot overlap, backs up the compose file, swaps only `web`,
+  checks the live site, and rolls back by itself if the checks fail.
+- Roll back only with `.cursor/skills/amixof-rollback/scripts/rollback.sh <last|backup|tag>`.
+- See what is live with `.cursor/skills/amixof-rollback/scripts/status.sh` (read-only).
+- Other read-only inspection over SSH is fine: `docker ps`, `docker compose ps`,
+  `docker logs --tail 200 stoat-web-1`, `df -h`, `grep -n 'image:' /opt/stoat/compose.yml`.
+  Do not `cat` the compose file or any `.env`: they hold credentials.
+- After any production change, run the `amixof-prod-check` skill.
+
+## Never
+
+- Never run `docker compose down`, `docker compose up` without `--no-deps <service>`,
+  `docker compose restart` without a service name, `docker system prune`, `docker volume rm/prune`,
+  `docker rm -f` on anything but a failed `web` container, or `rm -rf` on the server.
+- Never edit `/opt/stoat/compose.yml` by hand, or change any line except the `amixof-for-web` image tag.
+- Never touch the API, database (MongoDB), Redis/KeyDB, RabbitMQ, MinIO/S3, mail, LiveKit, or
+  reverse-proxy containers or their config. If a task seems to need that, stop and ask the user.
+- Never read, print, copy, or commit secrets: `.env` files on the server, `Revolt.toml`, SSH keys,
+  tokens, user data. Do not paste server env vars into chat or commits.
+- Never run database queries or migrations against production.
+- Never deploy from a branch other than `main`, a dirty tree, or a commit that is not on GitHub.
+  AGPL requires the running code to be published; the server builds from GitHub for that reason.
+- Never force-push `main`. Never rewrite published history.
+- Never delete backups or old images to free space without asking the user first.
+
+## If something goes wrong
+
+1. If the site is broken by a deploy you made: run `rollback.sh last` immediately, then confirm
+   with `amixof-prod-check`. If deploy.sh exited 4, the server already restored the previous
+   image; do not roll back again.
+2. Collect `docker logs --tail 200 stoat-web-1` and the deploy log in `.cursor/artifacts/`.
+3. Report what happened, what you rolled back to, and what you still need from the user.
